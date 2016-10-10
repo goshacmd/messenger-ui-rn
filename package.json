@@ -6,11 +6,12 @@
     "start": "node node_modules/react-native/local-cli/cli.js start"
   },
   "dependencies": {
+    "emoji-datasource": "^2.4.4",
     "react": "15.3.2",
     "react-native": "0.34.1",
+    "react-native-simple-onboarding": "~0.1.0",
     "react-redux": "^4.4.5",
-    "redux": "^3.6.0",
-    "react-native-simple-onboarding": "~0.1.0"
+    "redux": "^3.6.0"
   },
   "devDependencies": {
     "flow-bin": "^0.32.0"

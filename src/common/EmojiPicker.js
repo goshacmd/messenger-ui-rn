@@ -3,20 +3,25 @@
 import React from 'react';
 import { View, ScrollView, Text, TouchableOpacity } from 'react-native';
 
-const emoji = [
-  {
-    category: 'Smileys & People',
-    items: '😀 😂 😅 😇 😉 😊 🙃 ☺️ 😍 😘 😜 😝 🤑 😎 🤗 😏 😐 😡 😮 😱 😨 😰 😵 🤕 😈 👿'.split(' '),
-  },
-  {
-    category: 'Animals',
-    items: '🐶 🐱 🐭 🐹 🐰 🐻 🐼 🐨 🐯 🦁 🐮 🐷 🐽 🐸 🐙 🐵 🙈 🙉 🙊 🐒 🐔 🐧 🐦 🐤 🐣 🐥'.split(' '),
-  },
-  {
-    category: 'Food',
-    items: '🍏 🍎 🍐 🍊 🍋 🍌 🍉 🍇 🍓 🍈 🍒 🍑 🍍 🍅 🍆 🌶 🍞 🧀 🍗 🍔 🌭 🍕 🌮 🍜 🍪 🍷'.split(' '),
-  },
-];
+import emojiData from 'emoji-datasource';
+const CATEGORIES = ['People', 'Nature', 'Foods', 'Activity', 'Places', 'Objects', 'Symbols', 'Flags'];
+
+const charFromCode = utf16 => String.fromCodePoint(...utf16.split('-').map(u => '0x' + u));
+
+const _emoji = emojiData.reduce((acc, item) => {
+  const { category } = item;
+  if (!acc[category]) acc[category] = [];
+  acc[category].push({ sortOrder: item.sort_order, char: charFromCode(item.unified) });
+  return acc;
+}, {});
+
+const emoji = CATEGORIES.map(category => {
+  let items = _emoji[category] || [];
+  items = items.sort((a, b) => {
+    return (a.sortOrder > b.sortOrder) ? 1 : -1;
+  }).map(x => x.char);
+  return { category, items };
+});
 
 const EMOJI_SIZE = 40;
 const EmojiItem = ({ item, onPress } : { item: string, onPress: () => void }) => (
