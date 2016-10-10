@@ -9,6 +9,7 @@ import {
   NavigationExperimental,
 } from 'react-native';
 import { connect } from 'react-redux';
+import Onboarding from 'react-native-simple-onboarding';
 
 import { navPop, navPush } from './store';
 import { getChatById, getNavigationState } from './selectors';
@@ -16,7 +17,6 @@ import { getChatById, getNavigationState } from './selectors';
 import Header from './common/Header';
 import ChatsViewScene from './scene/Chats';
 import ChatViewScene from './scene/Chat';
-import Onboarder from './common/Onboarder';
 
 const {
   CardStack: NavigationCardStack,
@@ -51,7 +51,7 @@ class AwesomeProject extends Component {
 
   render() {
     const Circle = () => (
-      <View style={{ width: 150, height: 150, borderRadius: 75, backgroundColor: "blue" }} />
+      <View style={{ width: 150, height: 150, borderRadius: 75, backgroundColor: "red" }} />
     );
     const Square = () => (
       <View style={{ width: 150, height: 150, backgroundColor: "orangered" }} />
@@ -59,11 +59,11 @@ class AwesomeProject extends Component {
 
     if (!this.state.completedOnboarding) {
       return (
-        <Onboarder
+        <Onboarding
           pages={[
-            { backgroundColor: '#888', image: <Square />, title: 'Simple Messenger UI', subtitle: 'Implemented in React Native' },
-            { backgroundColor: "#999", image: <Circle />, title: 'Welcome', subtitle: 'To Earth' },
-            { backgroundColor: "#777", image: <Square />, title: 'Also', subtitle: 'Mars is nice' },
+            { backgroundColor: '#1060fe', image: <Square />, title: 'Simple Messenger UI', subtitle: 'Implemented in React Native' },
+            { backgroundColor: "#fe6e58", image: <Circle />, title: 'Welcome', subtitle: 'To Earth' },
+            { backgroundColor: "#999", image: <Square />, title: 'Also', subtitle: 'Mars is nice' },
           ]}
           onEnd={() => this.setState({ completedOnboarding: true })}
         />
