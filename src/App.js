@@ -16,6 +16,7 @@ import { getChatById, getNavigationState } from './selectors';
 import Header from './common/Header';
 import ChatsViewScene from './scene/Chats';
 import ChatViewScene from './scene/Chat';
+import Onboarder from './common/Onboarder';
 
 const {
   CardStack: NavigationCardStack,
@@ -41,7 +42,33 @@ class AwesomeProject extends Component {
     navPop: () => void,
   };
 
+  constructor() {
+    super();
+    this.state = {
+      completedOnboarding: false,
+    };
+  }
+
   render() {
+    const Circle = () => (
+      <View style={{ width: 150, height: 150, borderRadius: 75, backgroundColor: "blue" }} />
+    );
+    const Square = () => (
+      <View style={{ width: 150, height: 150, backgroundColor: "orangered" }} />
+    );
+
+    if (!this.state.completedOnboarding) {
+      return (
+        <Onboarder
+          pages={[
+            { backgroundColor: '#888', image: <Square />, title: 'Simple Messenger UI', subtitle: 'Implemented in React Native' },
+            { backgroundColor: "#999", image: <Circle />, title: 'Welcome', subtitle: 'To Earth' },
+            { backgroundColor: "#777", image: <Square />, title: 'Also', subtitle: 'Mars is nice' },
+          ]}
+          onEnd={() => this.setState({ completedOnboarding: true })}
+        />
+      );
+    }
     return (
       <NavigationCardStack
         onNavigateBack={() => this.props.navPop()}
