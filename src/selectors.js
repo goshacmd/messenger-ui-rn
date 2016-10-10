@@ -22,7 +22,7 @@ export const getCurrentChatId = (state : FullState) : ?number => {
   return state.nav.routes.slice(-1)[0].chatId;
 };
 
-export function getFilteredChats(state) {
+export function getFilteredChats(state : FullState) {
   const chats = getChats(state);
   const query = getQuery(state);
 

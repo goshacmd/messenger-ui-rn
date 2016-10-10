@@ -3,7 +3,7 @@
 import React from 'react';
 import { View, TextInput } from 'react-native';
 
-const SearchBar = ({ query, onChange }) => (
+const SearchBar = ({ query, onChange } : { query: string, onChange: (text: string) => void }) => (
   <View style={styles.bar}>
     <TextInput
       style={styles.input}

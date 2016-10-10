@@ -47,6 +47,7 @@ class AwesomeProject extends Component {
         onNavigateBack={() => this.props.navPop()}
         navigationState={(this.props.navigationState : any)}
         renderScene={this._renderScene}
+        renderHeader={null}
         style={{ flex: 1 }}
       />
     );
